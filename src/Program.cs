@@ -15,8 +15,8 @@ Console.WriteLine(" Reading settings... ");
 Console.ResetColor();
 
 Console.ForegroundColor = ConsoleColor.Cyan;
-var destinyPath = ConfigurationSettings.AppSettings["DestinyPath"];
-var htmlContentPath = ConfigurationSettings.AppSettings["HtmlContentPath"];
+var destinyPath = ConfigurationManager.AppSettings["DestinyPath"];
+var htmlContentPath = ConfigurationManager.AppSettings["HtmlContentPath"];
 
 Console.Write($"\tDestiny path: ");
 Console.ForegroundColor = ConsoleColor.Yellow;
