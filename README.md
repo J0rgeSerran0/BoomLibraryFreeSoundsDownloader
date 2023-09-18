@@ -37,17 +37,19 @@ When you have a lot of Free Sounds, is hard to check the sounds
 - Do click with your mouse at the right button and select the option `View page source`
 - Search the text ```<th width=70>DOWNLOAD</th>```
 - Copy all the HTML `table` section ```<table width=400>...</table>``` and save the text into a file (including the ```table``` tags)
-- Open the `App.config` file included in the source code and edit it to modify the values of `DestinyPath` and `HtmlContentPath`
+- Open the `App.config` file included in the source code and edit it to modify the values of `DestinyPath`, `HtmlContentPath` and `OverwriteSounds`
 
-![image](https://github.com/J0rgeSerran0/BoomLibraryFreeSoundsDownloader/assets/6237500/e14e58ae-9d68-45a9-bc70-4117b350d338)
+![image](https://github.com/J0rgeSerran0/BoomLibraryFreeSoundsDownloader/assets/6237500/c2316ca4-2891-4d9a-830f-3312c0d9b3ff)
 
 **DestinyPath** is the path where the Free Sounds will be downloaded
 
 **HtmlContentPath** is the path and filename of your HTML `table` section
 
+**OverwriteSounds** indicates if the sound has to be overwritten or not when the sound exists in the destiny folder
+
 - Open a Terminal or Console window, go to the source code, and go to the **src** directory, and finally write the command `dotnet run`
 
-![image](https://github.com/J0rgeSerran0/BoomLibraryFreeSoundsDownloader/assets/6237500/585955ac-0591-45ca-9dca-2a3920fb489c)
+![image](https://github.com/J0rgeSerran0/BoomLibraryFreeSoundsDownloader/assets/6237500/80e6bcc9-6740-4f66-ab7c-ad565d0ad227)
 
 The process should download the Free Sounds files into the **DestinyPath**
 
