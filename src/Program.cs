@@ -31,10 +31,6 @@ try
     Console.WriteLine($"'{configHtmlContentPath}'");
     Console.ForegroundColor = ConsoleColor.Cyan;
 
-    //var overwriteSounds = true;
-    //if (configOverwriteSounds == "0")
-    //    overwriteSounds = false;
-
     Console.Write($"\tOverwrite Sounds: ");
     Console.ForegroundColor = ConsoleColor.Yellow;
     Console.WriteLine($"'{configOverwriteSounds}'");
@@ -49,6 +45,15 @@ try
         Console.BackgroundColor = ConsoleColor.Red;
         Console.ForegroundColor = ConsoleColor.White;
         Console.WriteLine(" Html Content path is empty ");
+        Console.ResetColor();
+        Console.WriteLine();
+    }
+    else if (String.IsNullOrWhiteSpace(configDestinyPath))
+    {
+        // VALIDATION ERROR > Html Content Path Value is empty
+        Console.BackgroundColor = ConsoleColor.Red;
+        Console.ForegroundColor = ConsoleColor.White;
+        Console.WriteLine(" The Destiny Path is empty ");
         Console.ResetColor();
         Console.WriteLine();
     }
@@ -77,6 +82,12 @@ try
                 // Html Content Loaded!
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine($"\tHtml Content Loaded!");
+                Console.WriteLine();
+                Console.ResetColor();
+
+                // Processing the Html Content
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine($"\tProcessing the Html Content...");
                 Console.WriteLine();
                 Console.ResetColor();
 

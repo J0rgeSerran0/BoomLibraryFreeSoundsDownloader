@@ -35,10 +35,18 @@ namespace BoomLibraryFreeSoundsDownloader.Application.Services
             var htmlDocument = new HtmlDocument();
             htmlDocument.LoadHtml(_htmlContent);
 
-
             var table = htmlDocument.DocumentNode.SelectSingleNode("//table");
+            if (table == null)
+                throw new Exception("Object <table> not found. The HTML content is not valid or is an not expected content!");
+
             var tableRows = table.SelectNodes("tr");
+            if (tableRows == null)
+                throw new Exception("The table has not any row. The HTML content is not valid or is an not expected content!");
+
             var columns = tableRows[0].SelectNodes("th/text()");
+            if (columns == null)
+                throw new Exception("The table has not any column. The HTML content is not valid or is an not expected content!");
+
             for (int i = 1; i < tableRows.Count; i++)
             {
                 var fileName = tableRows[i].SelectSingleNode("td[1]").InnerText;
