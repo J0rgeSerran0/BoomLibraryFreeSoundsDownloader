@@ -8,15 +8,17 @@ namespace BoomLibraryFreeSoundsDownloader.Application.Services
     {
         private string _destinyPath = String.Empty;
         private string _htmlContent = String.Empty;
+        private bool _overwriteSounds = true;
 
-        public BoomLibraryService(string destinyPath, string htmlContent)
+        public BoomLibraryService(string destinyPath, string htmlContent, bool overwriteSounds)
         {
-            _destinyPath = destinyPath.Trim();
-            _destinyPath = _destinyPath.TrimEnd('\\') + @"\";
+            _destinyPath = destinyPath.Trim().TrimEnd('\\') + @"\";            
 
             BoomLibraryValidator.ValidateDestinyPath(_destinyPath);
 
             _htmlContent = htmlContent.Trim();
+            
+            _overwriteSounds = overwriteSounds;
         }
 
         private void GetWaveFile(FreeSoundModel freeSound)
@@ -73,11 +75,24 @@ namespace BoomLibraryFreeSoundsDownloader.Application.Services
                 // Information for the user
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.Write($"\tFile {index} of {freeSounds.Count} - ");
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine($"'{freeSound.Name}'");
-                Console.ResetColor();
 
-                GetWaveFile(freeSound);
+                if (!File.Exists($"{_destinyPath}{freeSound.Name}") || _overwriteSounds)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine($"'{freeSound.Name}'");
+                    Console.ResetColor();
+
+                    GetWaveFile(freeSound);
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.Write($"'{freeSound.Name}'");
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.WriteLine($" not downloaded because it exists");
+                    Console.ResetColor();
+                }
+
                 index += 1;
             }
             Console.WriteLine();
