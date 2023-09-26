@@ -28,8 +28,10 @@ namespace BoomLibraryFreeSoundsDownloader.Application.Services
                 client.GetStreamAsync(freeSound.Download).Result.CopyTo(ms);
         }
 
-        public void GetContent()
+        public int GetContent()
         {
+            int downloadedFiles = 0;
+
             var freeSounds = new List<FreeSoundModel>();
 
             var htmlDocument = new HtmlDocument();
@@ -91,6 +93,8 @@ namespace BoomLibraryFreeSoundsDownloader.Application.Services
                     Console.ResetColor();
 
                     GetWaveFile(freeSound);
+
+                    downloadedFiles += 1;
                 }
                 else
                 {
@@ -103,8 +107,11 @@ namespace BoomLibraryFreeSoundsDownloader.Application.Services
 
                 index += 1;
             }
+
             Console.WriteLine();
             Console.ResetColor();
+
+            return downloadedFiles;
         }
     }
 }

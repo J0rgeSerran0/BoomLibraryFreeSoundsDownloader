@@ -1,13 +1,21 @@
 ﻿using BoomLibraryFreeSoundsDownloader.Application.Services;
 using System.Configuration;
 
+int downloadedFiles = 0;
+
 try
 {
     Console.WriteLine();
-    Console.BackgroundColor = ConsoleColor.Cyan;
-    Console.ForegroundColor = ConsoleColor.Black;
+    Console.BackgroundColor = ConsoleColor.DarkGreen;
+    Console.ForegroundColor = ConsoleColor.White;
     Console.WriteLine($" {new String('*', nameof(BoomLibraryFreeSoundsDownloader).Length + 4)} ");
-    Console.WriteLine($" * {nameof(BoomLibraryFreeSoundsDownloader)} * ");
+    Console.Write($" * ");
+    Console.ForegroundColor = ConsoleColor.White;
+    Console.Write($"{nameof(BoomLibraryFreeSoundsDownloader)}");
+    Console.ForegroundColor = ConsoleColor.White;
+    Console.WriteLine($" * ");
+    //Console.WriteLine($" * {nameof(BoomLibraryFreeSoundsDownloader)} * ");
+    Console.ForegroundColor = ConsoleColor.White;
     Console.WriteLine($" {new String('*', nameof(BoomLibraryFreeSoundsDownloader).Length + 4)} ");
     Console.ResetColor();
     Console.WriteLine();
@@ -93,7 +101,7 @@ try
 
                 // Run the Service
                 var boomLibraryService = new BoomLibraryService(configDestinyPath, htmlContent, configOverwriteSounds);
-                boomLibraryService.GetContent();
+                downloadedFiles = boomLibraryService.GetContent();
             }
         }
         catch (Exception ex)
@@ -116,6 +124,14 @@ catch (Exception ex)
     Console.ResetColor();
     Console.WriteLine();
 }
+
+// Summary
+Console.ForegroundColor = ConsoleColor.White;
+Console.Write($"Downloaded Files: ");
+Console.ForegroundColor = ConsoleColor.Green;
+Console.WriteLine($"({downloadedFiles})");
+Console.ResetColor();
+Console.WriteLine();
 
 // Process Finished!
 Console.BackgroundColor = ConsoleColor.Yellow;
